@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="kor" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>동영상</title>
+</head>
+<body>
+    <video width="640" height="344" controls autoplay="autoplay">
+        <source th:src="@{/play/__${fileName}__}">
+        지원하지 않는 브라우져...
+        browser not support
+    </video>
+</body>
+</html>
