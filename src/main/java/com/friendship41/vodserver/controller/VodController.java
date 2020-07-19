@@ -1,6 +1,5 @@
 package com.friendship41.vodserver.controller;
 
-import com.friendship41.vodserver.data.ReqFile;
 import com.friendship41.vodserver.service.ConvertService;
 import com.friendship41.vodserver.service.FileService;
 import java.io.FileInputStream;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
