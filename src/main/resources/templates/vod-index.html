@@ -9,10 +9,20 @@
         <table border="2">
             <tr th:each="m : ${map}">
                 <td th:if="${m.getValue().equals('file')}">
-                    <a th:href="@{/vod/__${path}____${m.getKey()}__}" th:text="${m.getKey()}"></a>
+                    <span th:each="km : ${m.getKey()}">
+                        <form action="/vod" method="post">
+                            <input type="hidden" name="fileName" th:value="${km.getValue()}">
+                            <input type="submit" th:value="${km.getKey()}">
+                        </form>
+                    </span>
                 </td>
                 <td th:if="${m.getValue().equals('dir')}">
-                    <a th:href="@{/index/__${path}____${m.getKey()}__}" th:text="${m.getKey()}"></a>
+                    <span th:each="km : ${m.getKey()}">
+                        <form action="/index" method="post">
+                            <input type="hidden" name="pathNow" th:value="${km.getValue()}">
+                            <input type="submit" th:value="${km.getKey()}">
+                        </form>
+                    </span>
                 </td>
             </tr>
         </table>

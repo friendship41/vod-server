@@ -8,7 +8,18 @@
 </body>
 <script>
     function goIndex() {
-        location.href="/index/~qwe"
+        var form = document.createElement('form');
+        form.setAttribute('method', 'Post');
+        form.setAttribute('action', '/index')
+        form.setAttribute("charset", "UTF-8")
+        document.charset = 'utf-8';
+        var hiddenField = document.createElement('input');
+        hiddenField.setAttribute('type', 'hidden');
+        hiddenField.setAttribute('name', 'pathNow');
+        hiddenField.setAttribute('value', '~qwe');
+        form.appendChild(hiddenField);
+        document.body.appendChild(form);
+        form.submit();
     }
 </script>
 </html>

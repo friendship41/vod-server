@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface FileService {
   File getFile(String fileName);
-  Map<String, String> getDirAndFileMap(String pathNow) throws UnsupportedEncodingException;
+  Map<Map<String, String>, String> getDirAndFileMap(String pathNow) throws UnsupportedEncodingException;
 }
