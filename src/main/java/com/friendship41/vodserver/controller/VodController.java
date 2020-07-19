@@ -9,6 +9,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +20,8 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 
 @Controller
 public class VodController {
+  private static final Log LOG = LogFactory.getLog(VodController.class);
+
   @Autowired
   private FileService fileService;
   @Autowired
@@ -75,7 +79,7 @@ public class VodController {
   }
 
   private void readAndWrite(final InputStream inputStream, final OutputStream outputStream) throws IOException {
-    byte[] data = new byte[8048];
+    byte[] data = new byte[8192];
     int read = 0;
     while ((read = inputStream.read(data)) > 0) {
       outputStream.write(data, 0, read);
