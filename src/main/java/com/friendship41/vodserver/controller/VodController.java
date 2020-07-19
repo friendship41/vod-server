@@ -2,13 +2,11 @@ package com.friendship41.vodserver.controller;
 
 import com.friendship41.vodserver.service.ConvertService;
 import com.friendship41.vodserver.service.FileService;
-import java.io.FileInputStream;
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 @Controller
 public class VodController {
@@ -67,23 +64,16 @@ public class VodController {
   }
 
   @RequestMapping(value = "/play/{fileName}")
-  public StreamingResponseBody play(@PathVariable("fileName") String fileName) throws FileNotFoundException {
+  public String play(@PathVariable("fileName") String fileName, HttpServletRequest request, HttpServletResponse response)
+      throws FileNotFoundException {
     System.out.println("====================================");
     System.out.println("/play");
     fileName = fileName.replaceAll("-qwe-", "/");
     System.out.println(convertService.decodeUrlUTF8ToString(fileName));
-    final InputStream inputStream = new FileInputStream(fileService.getFile(fileName));
-    return outputStream -> {
-      readAndWrite(inputStream, outputStream);
-    };
-  }
+    File file = fileService.getFile(fileName);
 
-  private void readAndWrite(final InputStream inputStream, final OutputStream outputStream) throws IOException {
-    byte[] data = new byte[8192];
-    int read = 0;
-    while ((read = inputStream.read(data)) > 0) {
-      outputStream.write(data, 0, read);
-    }
-    outputStream.flush();
+    fileService.playFile(file, request, response);
+
+    return null;
   }
 }
