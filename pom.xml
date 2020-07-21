@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.friendship41</groupId>
     <artifactId>vod-server</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>vod-server</name>
     <description>내 영상 보는 서버</description>
 
