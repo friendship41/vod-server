@@ -9,5 +9,4 @@ public class VodServerApplication {
   public static void main(String[] args) {
     SpringApplication.run(VodServerApplication.class, args);
   }
-
 }
